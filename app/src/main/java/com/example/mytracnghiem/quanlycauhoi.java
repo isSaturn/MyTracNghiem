@@ -115,7 +115,7 @@ class quanlycauhoi extends SQLiteOpenHelper {
             try {
                 copyDataBase(); //chep du lieu
             } catch (IOException e) {
-                Log.d("error2", "Error copying database");
+                Log.d("error2", "Error copying databases");
             }
         }
     }
