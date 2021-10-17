@@ -1,5 +1,6 @@
 package com.example.mytracnghiem;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -41,12 +42,13 @@ class quanlycauhoi extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+        sqLiteDatabase.execSQL("create table "+TABLE_NAME+" (ID INTEGER PRIMARY KEY AUTOINCREMENT,CAUHOI TEXT,CAUA TEXT,CAUB TEXT,CAUC TEXT,CAUD TEXT,DAPAN TEXT)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
+        onCreate(sqLiteDatabase);
     }
 
     public void openDataBase() throws SQLException {
@@ -157,7 +159,19 @@ class quanlycauhoi extends SQLiteOpenHelper {
 
         return ds_cauhoi;
     }
-
-
-
+    public boolean insertData(String cauhoi, String caua, String caub, String cauc, String caud, String dapan) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KEY_CAUHOI,cauhoi);
+        contentValues.put(KEY_A,caua);
+        contentValues.put(KEY_B,caub);
+        contentValues.put(KEY_C,cauc);
+        contentValues.put(KEY_D,caud);
+        contentValues.put(KEY_DA,dapan);
+        long result = database.insert(TABLE_NAME,null ,contentValues);
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
 }
