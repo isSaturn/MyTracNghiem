@@ -141,7 +141,7 @@ class quanlycauhoi extends SQLiteOpenHelper {
                 null, //bieu thuc groupby
                 null, //bieu thuc having
                 "random()", //bieu thuc orderby
-                limit //"0,3" //bieuthuc limit
+                limit //"0,3" //bieuthuc limitt
         );
 
         contro.moveToFirst();
